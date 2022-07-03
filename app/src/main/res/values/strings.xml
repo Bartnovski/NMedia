@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Nmedia</string>
+    <string name="nmedia">Nmedia!</string>
+    <string name="avatar_description" translatable="false">Нетология. Университет интернет-профессий.</string>
+    <string name="postDate" translatable="false">19.06.2022</string>
+    <string name="date" translatable="false">21 мая в 18:36</string>
+    <string name="content_text" translatable="false">
+        Привет! Это новая Нетология! Когда-то Нетология начиналась с интенсивов
+        по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике
+        и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных
+        профессионалов. Но самое важное остаётся с нами: мы верим, что в каждом уже есть
+        сила, которая заставляет хотеть больше, целиться выше, бежать быстрее. Наша
+        миссия - помочь встать на путь роста и начать цепочку перемен →
+    </string>
+    <string name="url_netology" translatable="false">http://netolo.gy/fyb</string>
+    <string name="likes_amount" translatable="false">10</string>
+    <string name="shares_amount" translatable="false">5</string>
+    <string name="whatched_amount" translatable="false">5</string>
+</resources>
