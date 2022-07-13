@@ -16,4 +16,8 @@
     <string name="likes_amount" translatable="false">10</string>
     <string name="shares_amount" translatable="false">5</string>
     <string name="whatched_amount" translatable="false">5</string>
+    <string name="remove" translatable="true">Remove</string>
+    <string name="post_text" translatable="true">Post Text</string>
+    <string name="menu_edit" translatable="true">Edit</string>
+    <string name="netology">Netology</string>
 </resources>

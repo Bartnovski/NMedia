@@ -1,10 +1,10 @@
 package ru.netology.nmedia
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 
 class PostModel : Repository {
 
+    private var nextId = GENERATED_POST_AMOUNT.toLong()
     private var posts
     get() = checkNotNull(data.value)
     set(value) {
@@ -14,11 +14,11 @@ class PostModel : Repository {
     override val data : MutableLiveData<List<Post>>
 
     init {
-        val initialPosts = List(1000) { index ->
+        val initialPosts = List(GENERATED_POST_AMOUNT) { index ->
             Post(
                 id = index + 1L,
                 author = "Нетология. Университет будущего.",
-                content = "Индекс поста ${index + 1}\n"+
+                content = "Пост №${index + 1}\n"+
                         "Привет! Это новая Нетология! Когда-то Нетология начиналась с интенсивов" +
                         "по онлайн-маркетингу. Затем появились курсы по дизайну, разработке, аналитике" +
                         "и управлению. Мы растём сами и помогаем расти студентам: от новичков до уверенных" +
@@ -50,5 +50,29 @@ class PostModel : Repository {
             if (post.id == postId) post.copy(shared = post.shared + 1)
             else post
         }
+    }
+
+    override fun delete(postId: Long) {
+        data.value = posts.filter { it.id != postId }
+        }
+
+    override fun save(post: Post) {
+        if (post.id == Repository.NEW_POST_ID) insert(post) else update(post)
+    }
+
+    private fun insert(post: Post) {
+        data.value = posts + post.copy(
+            id = ++nextId
+        )
+    }
+
+    private fun update(post: Post){
+        data.value = posts.map {
+            if (it.id == post.id) post else it
+        }
+    }
+
+    private companion object {
+        const val GENERATED_POST_AMOUNT = 30
     }
 }
