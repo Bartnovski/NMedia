@@ -45,7 +45,6 @@ class PostsAdapter(
                         }
                         R.id.edit -> {
                             listener.onEditClicked(post)
-
                             true
                         }
                         else -> false
@@ -68,11 +67,9 @@ class PostsAdapter(
             authorName.text = post.author
             date.text = post.published
             content.text = post.content
-            likesAmount.text = renderAmount.render(post.likesAmount)
-            sharesAmount.text = renderAmount.render(post.shared)
-            likesPic.setImageResource(
-                if (post.likedByMe) R.drawable.ic_baseline_favorite_24 else R.drawable.ic_baseline_likes_24
-            )
+            sharePic.text = renderAmount.render(post.shared)
+            likesPic.text = renderAmount.render(post.likesAmount)
+            likesPic.isChecked = post.likedByMe
             options.setOnClickListener { popupMenu.show() }
         }
     }

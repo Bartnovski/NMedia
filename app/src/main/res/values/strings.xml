@@ -20,4 +20,6 @@
     <string name="post_text" translatable="true">Post Text</string>
     <string name="menu_edit" translatable="true">Edit</string>
     <string name="netology">Netology</string>
+    <string name="like" translatable="false">Like</string>
+    <string name="Share" translatable="false">share</string>
 </resources>

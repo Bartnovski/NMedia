@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/post"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -40,12 +41,13 @@
         app:layout_constraintStart_toStartOf="@id/authorName"
         app:layout_constraintTop_toBottomOf="@id/authorName" />
 
-    <androidx.appcompat.widget.AppCompatImageButton
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/options"
+        style="@style/Widget.AppTheme.Icons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:src="@drawable/ic_options_24dp"
+        app:icon="@drawable/ic_options_24dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -79,60 +81,44 @@
         app:constraint_referenced_ids="linkNetology" />
 
 
-    <ImageView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/likesPic"
-        android:layout_width="@dimen/pic_size"
-        android:layout_height="@dimen/pic_size"
-        android:src="@drawable/ic_baseline_likes_24"
+        style="@style/Widget.AppTheme.Icons"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/boarder_margin"
+        android:checkable="true"
+        android:contentDescription="@string/like"
+        android:textAlignment="viewStart"
+        app:icon="@drawable/ic_likes_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/footerBarrier"/>
+        app:layout_constraintTop_toBottomOf="@id/footerBarrier"
+        tools:text="999" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/likesAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/pic_size"
-        android:text="@string/likes_amount"
-        app:layout_constraintBottom_toBottomOf="@id/likesPic"
-        app:layout_constraintEnd_toStartOf="@+id/sharePic"
-        app:layout_constraintStart_toEndOf="@id/likesPic"
-        app:layout_constraintTop_toTopOf="@id/likesPic" />
-
-    <ImageView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/sharePic"
-        android:layout_width="@dimen/pic_size"
-        android:layout_height="@dimen/pic_size"
-        android:layout_marginStart="@dimen/pic_size"
-        android:src="@drawable/ic_baseline_share_24"
-        app:layout_constraintStart_toEndOf="@id/likesAmount"
-        app:layout_constraintTop_toTopOf="@+id/likesPic" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/sharesAmount"
+        style="@style/Widget.AppTheme.Icons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/pic_size"
-        android:text="@string/shares_amount"
-        app:layout_constraintBottom_toBottomOf="@id/sharePic"
-        app:layout_constraintStart_toEndOf="@id/sharePic"
-        app:layout_constraintTop_toTopOf="@id/sharePic" />
+        android:layout_marginStart="@dimen/boarder_margin"
+        app:icon="@drawable/ic_baseline_share_24"
+        app:layout_constraintStart_toEndOf="@id/likesPic"
+        app:layout_constraintTop_toTopOf="@+id/likesPic"
+        android:contentDescription="@string/Share"
+        android:textAlignment="viewStart"
+        tools:text="990"/>
 
-    <ImageView
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/watchedPic"
-        android:layout_width="@dimen/pic_size"
-        android:layout_height="@dimen/pic_size"
-        android:layout_marginEnd="@dimen/pic_size"
-        android:src="@drawable/ic_baseline_watched_24"
-        app:layout_constraintEnd_toStartOf="@id/watchedAmount"
-        app:layout_constraintTop_toTopOf="@id/sharePic" />
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/watchedAmount"
+        style="@style/Widget.AppTheme.Icons"
+        android:checkable="false"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/boarder_margin"
+        app:icon="@drawable/ic_baseline_watched_24"
         android:text="@string/whatched_amount"
-        app:layout_constraintBottom_toBottomOf="@+id/watchedPic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/watchedPic" />
+        app:layout_constraintTop_toTopOf="@id/sharePic" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
