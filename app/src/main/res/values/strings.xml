@@ -21,5 +21,5 @@
     <string name="menu_edit" translatable="true">Edit</string>
     <string name="netology">Netology</string>
     <string name="like" translatable="false">Like</string>
-    <string name="Share" translatable="false">share</string>
+    <string name="share">share</string>
 </resources>

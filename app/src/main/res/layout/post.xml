@@ -105,7 +105,7 @@
         app:icon="@drawable/ic_baseline_share_24"
         app:layout_constraintStart_toEndOf="@id/likesPic"
         app:layout_constraintTop_toTopOf="@+id/likesPic"
-        android:contentDescription="@string/Share"
+        android:contentDescription="@string/share"
         android:textAlignment="viewStart"
         tools:text="990"/>
 

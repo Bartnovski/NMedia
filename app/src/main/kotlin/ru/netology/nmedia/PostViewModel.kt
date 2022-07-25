@@ -1,25 +1,32 @@
 package ru.netology.nmedia
 
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import ru.netology.nmedia.adapter.PostInteractionListener
-import java.time.temporal.TemporalAmount
+import ru.netology.nmedia.utils.SingleLiveEvent
+
 
 open class PostViewModel : ViewModel(),PostInteractionListener {
 
-    private val repository : Repository = PostModel()
+    val repository : Repository = PostModel()
     val data = repository.data
-    val currentPost = MutableLiveData<Post?>(null)
+    val currentPost = (MutableLiveData<Post?>(null))
+    val shareEvent = SingleLiveEvent<Post>()
+    val editEvent = SingleLiveEvent<Post>()
 
     override fun onLikeClicked(post: Post) = repository.like(post.id)
-    override fun onShareClicked(post: Post) = repository.share(post.id)
+    override fun onShareClicked(post: Post){
+        shareEvent.value = post
+        repository.share(post.id)
+    }
     override fun onDeleteClicked(post: Post) = repository.delete(post.id)
     override fun onEditClicked(post: Post) {
         currentPost.value = post
+        editEvent.value = post
     }
 
-    fun onSaveButtonClicked(content: String){
-        if (content.isBlank()) return
+    fun onCreateNewPost(content: String) {
         val post = currentPost.value?.copy(
             content = content
         ) ?: Post(

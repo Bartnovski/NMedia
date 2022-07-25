@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.Post
-import ru.netology.nmedia.PostListActivity
+import ru.netology.nmedia.activity.PostListActivity
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.PostBinding
 
