@@ -60,7 +60,6 @@ class PostListActivity : AppCompatActivity() {
     }
 
     companion object {
-
         fun render(amount: Long) = when (amount) {
             in 0..999 -> "$amount"
             in 1000..1099 -> "1K"
