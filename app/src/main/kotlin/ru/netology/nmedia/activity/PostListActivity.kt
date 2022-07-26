@@ -2,6 +2,7 @@ package ru.netology.nmedia.activity
 
 
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -39,6 +40,12 @@ class PostListActivity : AppCompatActivity() {
             activityCreateEditPostLauncher.launch(it.content)
         }
 
+        viewModel.playVideoEvent.observe(this) { post ->
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(post.videoResource))
+            val goToResource = Intent.createChooser(intent,"")
+            startActivity(goToResource)
+        }
+
         viewModel.shareEvent.observe(this) { post ->
             val intent = Intent().apply {
                 action = Intent.ACTION_SEND
@@ -52,13 +59,16 @@ class PostListActivity : AppCompatActivity() {
 
     }
 
-    fun render(amount: Long) = when (amount) {
-        in 0..999 -> "$amount"
-        in 1000..1099 -> "1K"
-        in 1100..9999 -> "${(amount / 100).toDouble() / 10}K"
-        in 10_000..999_999 -> "${amount / 1000}K"
-        in 1_000_000..1_099_999 -> "1M"
-        else -> "${(amount / 100_000).toDouble() / 10}M"
+    companion object {
+
+        fun render(amount: Long) = when (amount) {
+            in 0..999 -> "$amount"
+            in 1000..1099 -> "1K"
+            in 1100..9999 -> "${(amount / 100).toDouble() / 10}K"
+            in 10_000..999_999 -> "${amount / 1000}K"
+            in 1_000_000..1_099_999 -> "1M"
+            else -> "${(amount / 100_000).toDouble() / 10}M"
+        }
     }
 }
 

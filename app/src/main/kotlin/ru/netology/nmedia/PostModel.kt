@@ -28,7 +28,8 @@ class PostModel : Repository {
                 published = "26 мая в 18:36",
                 likesAmount = 999,
                 shared = 990,
-                likedByMe = false
+                likedByMe = false,
+                videoResource = "https://www.youtube.com/watch?v=xOgT2qYAzds&ab_channel=%D0%9D%D0%B5%D1%82%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D1%8F"
             )
         }
         data = MutableLiveData(initialPosts)

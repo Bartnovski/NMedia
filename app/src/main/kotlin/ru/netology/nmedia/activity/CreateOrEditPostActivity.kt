@@ -52,18 +52,4 @@ class NewPostActivity : AppCompatActivity() {
         }
     }
 
-//    object ResultContractEdit : ActivityResultContract<String?,String?>() {
-//        override fun createIntent(context: Context, input: String?): Intent =
-//            Intent(context,NewPostActivity::class.java).apply {
-//                putExtra(Intent.EXTRA_TEXT,input)
-//            }
-//
-//        override fun parseResult(resultCode: Int, intent: Intent?): String? {
-//            if (resultCode != RESULT_OK) return null
-//            intent ?: return null
-//
-//            return intent.getStringExtra(POST_CONTENT_EXTRA_KEY)
-//        }
-//    }
-
 }

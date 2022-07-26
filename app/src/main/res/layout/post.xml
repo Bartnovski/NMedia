@@ -73,12 +73,32 @@
         android:text="@string/url_netology"
         app:layout_constraintTop_toBottomOf="@+id/content" />
 
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/footerBarrier"
+    <ImageView
+        android:id="@+id/videContent"
+        android:layout_width="match_parent"
+        android:layout_height="192dp"
+        android:layout_margin="@dimen/common_spacing"
+        app:layout_constraintTop_toBottomOf="@+id/linkNetology"
+        app:layout_constraintStart_toStartOf="parent"
+        android:src="@drawable/video"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/playVideo"
+        style="@style/Widget.AppTheme.Icons"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@+id/videContent"
+        app:layout_constraintBottom_toBottomOf="@+id/videContent"
+        app:layout_constraintStart_toStartOf="@+id/videContent"
+        app:layout_constraintEnd_toEndOf="@+id/videContent"
+        app:icon="@drawable/ic_baseline_play_circle_filled_48"/>
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/footerBarrier"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         app:barrierDirection="bottom"
-        app:constraint_referenced_ids="linkNetology" />
+        app:constraint_referenced_ids="videContent" />
 
 
     <com.google.android.material.button.MaterialButton

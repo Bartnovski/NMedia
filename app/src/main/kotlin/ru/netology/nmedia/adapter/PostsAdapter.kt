@@ -32,7 +32,6 @@ class PostsAdapter(
         listener: PostInteractionListener
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        private val renderAmount = PostListActivity()
         private lateinit var post : Post
         private val popupMenu by lazy {
             PopupMenu(itemView.context,binding.options).apply {
@@ -60,6 +59,12 @@ class PostsAdapter(
             binding.sharePic.setOnClickListener {
                 listener.onShareClicked(post)
             }
+            binding.playVideo.setOnClickListener {
+                listener.onPlayClicked(post)
+            }
+            binding.videContent.setOnClickListener {
+                listener.onPlayClicked(post)
+            }
         }
 
         fun bind(post : Post) = with(binding) {
@@ -67,8 +72,8 @@ class PostsAdapter(
             authorName.text = post.author
             date.text = post.published
             content.text = post.content
-            sharePic.text = renderAmount.render(post.shared)
-            likesPic.text = renderAmount.render(post.likesAmount)
+            sharePic.text = PostListActivity.render(post.shared)
+            likesPic.text = PostListActivity.render(post.likesAmount)
             likesPic.isChecked = post.likedByMe
             options.setOnClickListener { popupMenu.show() }
         }

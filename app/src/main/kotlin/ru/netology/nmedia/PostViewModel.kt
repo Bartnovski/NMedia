@@ -14,6 +14,7 @@ open class PostViewModel : ViewModel(),PostInteractionListener {
     val currentPost = (MutableLiveData<Post?>(null))
     val shareEvent = SingleLiveEvent<Post>()
     val editEvent = SingleLiveEvent<Post>()
+    val playVideoEvent = SingleLiveEvent<Post>()
 
     override fun onLikeClicked(post: Post) = repository.like(post.id)
     override fun onShareClicked(post: Post){
@@ -26,6 +27,10 @@ open class PostViewModel : ViewModel(),PostInteractionListener {
         editEvent.value = post
     }
 
+    override fun onPlayClicked(post: Post) {
+       playVideoEvent.value = post
+    }
+
     fun onCreateNewPost(content: String) {
         val post = currentPost.value?.copy(
             content = content
@@ -36,6 +41,7 @@ open class PostViewModel : ViewModel(),PostInteractionListener {
             published = "today",
             likesAmount = 1_299_999,
             shared = 999,
+            videoResource = "https://www.youtube.com"
         )
         repository.save(post)
         currentPost.value = null
