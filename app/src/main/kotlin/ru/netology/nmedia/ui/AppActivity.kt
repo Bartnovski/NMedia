@@ -3,7 +3,7 @@ package ru.netology.nmedia.ui
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import com.google.android.material.snackbar.Snackbar
 import ru.netology.nmedia.R
 import ru.netology.nmedia.databinding.ActivityAppBinding
@@ -30,11 +30,11 @@ class AppActivity : AppCompatActivity() {
                     }.show()
                 return@let
             }
-//            val fragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment  //альтернативный вариант
-//            fragment.navController.navigate(R.id.newPostFragment,Bundle().apply { textArg = text })
-            findNavController(R.id.nav_host_fragment).navigate(
-                    R.id.newPostFragment,
-                    Bundle().apply { textArg = text })
+            val fragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+            fragment.navController.navigate(R.id.newPostFragment,Bundle().apply { textArg = text })
+//            findNavController(R.id.nav_host_fragment).navigate(
+//                    R.id.newPostFragment,
+//                    Bundle().apply { textArg = text })
         }
     }
 }
