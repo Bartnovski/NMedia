@@ -18,25 +18,34 @@ open class PostViewModel(
     val shareEvent = SingleLiveEvent<Post>()
     val editEvent = SingleLiveEvent<Post>()
     val playVideoEvent = SingleLiveEvent<Post>()
+    val onContentClickEvent = SingleLiveEvent<Post>()
+    val onDeleteClickedEvent = SingleLiveEvent<Post>()
 
     override fun onLikeClicked(post: Post) = repository.like(post.id)
     override fun onShareClicked(post: Post){
         shareEvent.value = post
         repository.share(post.id)
     }
-    override fun onDeleteClicked(post: Post) = repository.delete(post.id)
+    override fun onDeleteClicked(post: Post) {
+        onDeleteClickedEvent.value = post
+        repository.delete(post.id)
+    }
     override fun onEditClicked(post: Post) {
-        currentPost.value = post
         editEvent.value = post
+        currentPost.value = post
     }
 
     override fun onPlayClicked(post: Post) {
        playVideoEvent.value = post
     }
 
+    override fun showDetailedView(post: Post) {
+       onContentClickEvent.value = post
+    }
+
     fun onCreateNewPost(content: String) {
         val post = currentPost.value?.copy(
-            content = content
+            content = content,
         ) ?: Post(
             id = Repository.NEW_POST_ID,
             author = "Someone",

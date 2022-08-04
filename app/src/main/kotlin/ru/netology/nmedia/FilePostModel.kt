@@ -47,7 +47,7 @@ class FilePostModel(private val application: Application) : Repository{
     }
 
     private var nextId: Long by Delegates.observable(
-        prefs.getLong(NEXT_ID,0L)
+        prefs.getLong(NEXT_ID,GENERATED_POST_AMOUNT.toLong())
     ) { _,_,nextValue ->
         prefs.edit { putLong(NEXT_ID,nextValue)}
 

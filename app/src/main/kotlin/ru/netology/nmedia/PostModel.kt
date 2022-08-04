@@ -74,6 +74,7 @@ class PostModel : Repository {
     }
 
     private companion object {
-        const val GENERATED_POST_AMOUNT = 30
+        const val GENERATED_POST_AMOUNT = 10
+
     }
 }

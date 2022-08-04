@@ -7,8 +7,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import ru.netology.nmedia.Post
-import ru.netology.nmedia.activity.PostListActivity
 import ru.netology.nmedia.R
+import ru.netology.nmedia.ui.FeedFragment
 import ru.netology.nmedia.databinding.PostBinding
 
 class PostsAdapter(
@@ -53,6 +53,9 @@ class PostsAdapter(
         }
 
         init {
+            binding.content.setOnClickListener {
+                listener.showDetailedView(post)
+            }
             binding.likesPic.setOnClickListener {
                 listener.onLikeClicked(post)
             }
@@ -72,8 +75,8 @@ class PostsAdapter(
             authorName.text = post.author
             date.text = post.published
             content.text = post.content
-            sharePic.text = PostListActivity.render(post.shared)
-            likesPic.text = PostListActivity.render(post.likesAmount)
+            sharePic.text = FeedFragment.render(post.shared)
+            likesPic.text = FeedFragment.render(post.likesAmount)
             likesPic.isChecked = post.likedByMe
             options.setOnClickListener { popupMenu.show() }
         }
