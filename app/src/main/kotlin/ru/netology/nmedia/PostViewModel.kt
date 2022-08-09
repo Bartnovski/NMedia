@@ -5,6 +5,9 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.adapter.PostInteractionListener
+import ru.netology.nmedia.db.AppDb
+import ru.netology.nmedia.db.SQLiteRepository
+
 import ru.netology.nmedia.utils.SingleLiveEvent
 
 
@@ -12,7 +15,11 @@ open class PostViewModel(
     application: Application
 ) : AndroidViewModel(application),PostInteractionListener {
 
-    private val repository : Repository = FilePostModel(application)
+    private val repository: Repository = SQLiteRepository(
+        dao = AppDb.getInstance(
+            context = application
+        ).postDAO
+    )
     val data = repository.data
     private val currentPost = (MutableLiveData<Post?>(null))
     val shareEvent = SingleLiveEvent<Post>()
@@ -21,10 +28,10 @@ open class PostViewModel(
     val onContentClickEvent = SingleLiveEvent<Post>()
     val onDeleteClickedEvent = SingleLiveEvent<Post>()
 
-    override fun onLikeClicked(post: Post) = repository.like(post.id)
+    override fun onLikeClicked(post: Post) = repository.like(post)
     override fun onShareClicked(post: Post){
         shareEvent.value = post
-        repository.share(post.id)
+        repository.share(post)
     }
     override fun onDeleteClicked(post: Post) {
         onDeleteClickedEvent.value = post
@@ -58,5 +65,4 @@ open class PostViewModel(
         repository.save(post)
         currentPost.value = null
     }
-
 }

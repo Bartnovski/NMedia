@@ -35,9 +35,9 @@ class PostModel : Repository {
         data = MutableLiveData(initialPosts)
     }
 
-    override fun like(postId : Long) {
-        posts = posts.map { post ->
-            if (post.id == postId)
+    override fun like(post: Post) {
+        posts = posts.map { postInList ->
+            if (postInList.id == post.id)
                 if(!post.likedByMe) post.copy(likedByMe = !post.likedByMe,
                     likesAmount = post.likesAmount + 1)
                 else post.copy(likedByMe = !post.likedByMe,
@@ -46,9 +46,9 @@ class PostModel : Repository {
         }
     }
 
-    override fun share(postId: Long) {
+    override fun share(post: Post) {
         posts = posts.map { post ->
-            if (post.id == postId) post.copy(shared = post.shared + 1)
+            if (post.id == post.id) post.copy(shared = post.shared + 1)
             else post
         }
     }
