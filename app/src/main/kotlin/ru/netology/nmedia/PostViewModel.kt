@@ -6,8 +6,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import ru.netology.nmedia.adapter.PostInteractionListener
 import ru.netology.nmedia.db.AppDb
-import ru.netology.nmedia.db.SQLiteRepository
-
+import ru.netology.nmedia.room.RoomRepository
 import ru.netology.nmedia.utils.SingleLiveEvent
 
 
@@ -15,7 +14,7 @@ open class PostViewModel(
     application: Application
 ) : AndroidViewModel(application),PostInteractionListener {
 
-    private val repository: Repository = SQLiteRepository(
+    private val repository: Repository = RoomRepository(
         dao = AppDb.getInstance(
             context = application
         ).postDAO
@@ -28,10 +27,10 @@ open class PostViewModel(
     val onContentClickEvent = SingleLiveEvent<Post>()
     val onDeleteClickedEvent = SingleLiveEvent<Post>()
 
-    override fun onLikeClicked(post: Post) = repository.like(post)
+    override fun onLikeClicked(post: Post) = repository.like(post.id)
     override fun onShareClicked(post: Post){
         shareEvent.value = post
-        repository.share(post)
+        repository.share(post.id)
     }
     override fun onDeleteClicked(post: Post) {
         onDeleteClickedEvent.value = post
@@ -59,6 +58,7 @@ open class PostViewModel(
             content = content,
             published = "today",
             likesAmount = 1_299_999,
+            likedByMe = false,
             shared = 999,
             videoResource = "https://www.youtube.com"
         )
